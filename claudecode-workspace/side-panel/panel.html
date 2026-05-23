@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Code Workspace</title>
+  <link rel="stylesheet" href="panel.css">
+  <!-- BUNDLED locally — NOT CDN (MV3 CSP blocks remote scripts) -->
+  <link rel="stylesheet" href="../lib/xterm.min.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <div id="header">
+    <div id="status-area">
+      <div id="status-dot" class="disconnected"></div>
+      <span id="status-text">Connecting...</span>
+    </div>
+    <div id="project-area" class="hidden">
+      <span id="project-name">No project</span>
+    </div>
+    <div id="header-actions">
+      <button id="btn-tab" title="Open in full tab">&#x2922;</button>
+      <button id="btn-restart" title="New Session — clears current conversation" class="hidden">&#x1F5D1;</button>
+    </div>
+  </div>
+
+  <!-- State: setup (companion not installed) -->
+  <div id="state-setup" class="state hidden">
+    <div class="state-icon">&#x1F527;</div>
+    <h2>Install Companion</h2>
+    <p>Run in your terminal:</p>
+    <div class="code-block">npm install -g claudecode-runtime</div>
+    <p class="hint">Then click Refresh.</p>
+    <button class="btn-primary" id="btn-refresh">Refresh</button>
+  </div>
+
+  <!-- State: Claude CLI missing -->
+  <div id="state-claude-missing" class="state hidden">
+    <div class="state-icon">&#x26A0;&#xFE0F;</div>
+    <h2>Claude Code Not Found</h2>
+    <p>Install Claude Code CLI:</p>
+    <div class="code-block">npm install -g @anthropic-ai/claude-code</div>
+    <p class="hint">Then click Refresh.</p>
+    <button class="btn-primary" id="btn-refresh2">Refresh</button>
+  </div>
+
+  <!-- State: No project open -->
+  <div id="state-no-project" class="state hidden">
+    <div class="state-icon">&#x1F5C2;&#xFE0F;</div>
+    <h2>No Project Open</h2>
+    <button class="btn-primary" id="btn-open-project">+ Open Project Folder</button>
+    <div id="last-workspace" class="hidden">
+      <p class="hint">Last opened:</p>
+      <button id="btn-reopen" class="btn-secondary"></button>
+    </div>
+  </div>
+
+  <!-- State: Project detected, pre-launch -->
+  <div id="state-project-ready" class="state hidden">
+    <div class="state-icon">&#x2705;</div>
+    <h2 id="detected-project-name">project</h2>
+    <div id="detected-badges" class="badges"></div>
+    <button class="btn-primary" id="btn-launch">Launch Claude Code</button>
+    <button class="btn-link" id="btn-change-folder">Change folder</button>
+  </div>
+
+  <!-- State: Terminal active -->
+  <div id="state-terminal" class="state hidden">
+    <div id="terminal-container"></div>
+    <div id="terminal-footer">
+      <span id="footer-project"></span>
+    </div>
+  </div>
+
+  <!-- State: Session crashed -->
+  <div id="state-crashed" class="state hidden">
+    <div class="state-icon">&#x1F4A5;</div>
+    <h2>Claude Code Exited</h2>
+    <p id="crash-reason"></p>
+    <button class="btn-primary" id="btn-reconnect">Restart Session</button>
+    <button class="btn-link" id="btn-change-folder2">Change folder</button>
+  </div>
+
+  <!-- BUNDLED locally -->
+  <script src="../lib/xterm.min.js"></script>
+  <script src="../lib/xterm-addon-fit.min.js"></script>
+  <script src="panel.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "claudecode-runtime",
+  "version": "1.0.0",
+  "description": "Claude Code Workspace companion — bridges Chrome extension to Claude Code CLI",
+  "main": "bin/host.js",
+  "scripts": {
+    "postinstall": "node scripts/setup.js"
+  },
+  "dependencies": {
+    "@homebridge/node-pty-prebuilt-multiarch": "^0.13.1"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "os": [
+    "win32",
+    "darwin",
+    "linux"
+  ],
+  "license": "MIT"
+}

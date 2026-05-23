@@ -1,0 +1,6 @@
+node_modules/
+*.log
+*.tmp
+agentdb.rvf
+agentdb.rvf.lock
+ruvector.db
