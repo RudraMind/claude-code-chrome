@@ -5,9 +5,7 @@
   "description": "Use Claude Code directly from Chrome. Persistent sessions, folder picker, instant reconnect.",
   "permissions": [
     "nativeMessaging",
-    "sidePanel",
-    "storage",
-    "tabs"
+    "sidePanel"
   ],
   "side_panel": {
     "default_path": "side-panel/panel.html"

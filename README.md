@@ -64,7 +64,7 @@ cd claudecode-runtime
 npm install
 ```
 
-This installs `node-pty` (PTY emulation) and registers the Native Messaging Host automatically.
+This installs `@homebridge/node-pty-prebuilt-multiarch` (PTY emulation). It also runs `scripts/setup.js` which registers the Native Messaging Host with a placeholder Extension ID — you must complete Step 4 with the real ID before the companion will connect.
 
 ### Step 3: Load extension in Chrome
 
@@ -112,9 +112,13 @@ Click the Claude Code Workspace icon in your Chrome toolbar. The side panel open
 ## Troubleshooting
 
 **Red dot / companion not connected**
+```powershell
+# Windows (PowerShell)
+Get-Content "$env:USERPROFILE\.claudecode-runtime\companion.log" -Tail 50
 ```
-# Check companion log
-cat ~/.claudecode-runtime/companion.log
+```bash
+# Mac / Linux
+tail -50 ~/.claudecode-runtime/companion.log
 ```
 - Verify Extension ID matches NMH manifest
 - Reload extension after re-running `setup.js`
